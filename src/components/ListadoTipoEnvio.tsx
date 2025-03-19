@@ -1,7 +1,7 @@
 import { useId, useState } from 'react';
 import useListarUsrTipoEnvio from '../hoocks/listarusrtipoenvio.tsx';
 import { tipo_envio_str } from '../types/common.tsx';
-
+import { obtenerListUsuarios } from '../services/obtenerListUsuarios.tsx'
 
 export function ListadoTipoEnvio() {
 
@@ -13,6 +13,8 @@ export function ListadoTipoEnvio() {
     function handleClick(event: Event) {
         event.preventDefault();
         console.log(document.getElementById(inp_search_id).value)
+        obtenerListUsuarios();
+        console.log(import.meta.env.VITE_DEFAULT_PATH)
     }
     return (
         <article className="princ-artivle">
