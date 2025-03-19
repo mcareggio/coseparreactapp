@@ -1,0 +1,32 @@
+    [
+        {
+            "id": 1,
+            "nombre": "Correo:Marcos",
+            "email": "marcos@gmail.com"
+        },
+        {
+            "id": 2,
+            "nombre": "Correo:Juan",
+            "email": "juan@gmail.com"
+        },
+        {
+            "id": 3,
+            "nombre": "Correo:Pedro",
+            "email": "pedro@gmail.com"
+        },
+        {
+            "id": 4,
+            "nombre": "Correo:Julian",
+            "email": "julian@gmail.com"
+        },
+        {
+            "id": 5,
+            "nombre": "Correo:Carlos",
+            "email": "carlos@gmail.com"
+        },
+        {
+            "id": 6,
+            "nombre": "Correo:Victor",
+            "email": "victor@gmail.com"
+        }
+    ]

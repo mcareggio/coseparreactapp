@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "nombre": "Marcos",
+        "telefono": "5492302610828"
+    },
+    {
+        "id": 2,
+        "nombre": "Juan Carlos Vanderhoeven",
+        "telefono": "5492302620828"
+    },
+    {
+        "id": 3,
+        "nombre": "Pedro",
+        "telefono": "5492302630828"
+    },
+    {
+        "id": 4,
+        "nombre": "Julian",
+        "telefono": "5492302640848"
+    },
+    {
+        "id": 5,
+        "nombre": "Carlos",
+        "telefono": "5492302647828"
+    },
+    {
+        "id": 6,
+        "nombre": "Victor",
+        "telefono": "5492302640829"
+    }
+]
