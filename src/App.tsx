@@ -1,13 +1,14 @@
 import './App.css'
 import HeaderComp from './components/HeaderComp.tsx'
-import { ListadoTipoEnvio } from './components/ListadoTipoEnvio.tsx'
+import { ListadoUsuariosEnvio } from './components/ListadoUsuariosEnvio.tsx'
+
 function App() {
 
   return (
     <>
       <HeaderComp></HeaderComp>
       <main className='main-content'>
-        <ListadoTipoEnvio />
+        <ListadoUsuariosEnvio />
       </main>
       <footer className='main-footer'><div>@Copiright - Marcos Careggio</div></footer>
     </>
