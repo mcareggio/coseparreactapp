@@ -1,10 +1,14 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.tsx'
+import { BrowserRouter, Routes, Route } from "react-router";
+import { Listsusrenvpage } from './pages/Listsusrenvpage.tsx';
+import { Index } from './pages/Index.tsx';
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+  <BrowserRouter>
+    <Routes>
+      <Route path="/listado" element={<Listsusrenvpage />} />
+      <Route path="/" element={<Index />} />
+    </Routes>
+  </BrowserRouter>,
 )
