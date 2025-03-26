@@ -1,5 +1,6 @@
 import { Children, useEffect, useId } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+
 export function Menuprincipal({ children }) {
     const openmenubuttonid = useId()
     const closemenubuttonid = useId()

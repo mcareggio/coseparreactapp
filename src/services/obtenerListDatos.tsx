@@ -1,5 +1,5 @@
-import whatsappjson from '../mocks/listadoTipoEnvioWhatsApp.json';
-import { datos_forma_envio } from '../types/common.tsx'
+import usuariosenvio from '../mocks/listadoUsuariosEnvio.json';
+import { usuarios_forma_envio } from '../types/common.tsx'
 /*
 export function obtenerListDatos(url: string) {
 
@@ -16,8 +16,8 @@ export function obtenerListDatos(url: string) {
 
 
 
-    let newlistado: datos_forma_envio[] = []
-    whatsappjson.map((el) => { newlistado.push({ id: el.id, nombre: el.nombre, formaEnvio: el.telefono }) })
+    let newlistado: usuarios_forma_envio[] = []
+    usuariosenvio.map((el) => { newlistado.push({ id: el.id, nombre: el.nombre, telefono: el.telefono, email: el.email, enviowhatsapp: el.enviowhatsapp, enviomail: el.enviomail }) })
 
     return newlistado;
 

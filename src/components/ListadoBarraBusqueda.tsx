@@ -1,5 +1,5 @@
 import { useId } from "react";
-import { datos_forma_envio } from '../types/common'
+import { usuarios_envio } from '../types/common'
 
 export function ListadoBarraBusqueda({ setSearch, listado, loading }) {
     const inp_search_id = useId();
@@ -24,10 +24,11 @@ export function ListadoBarraBusqueda({ setSearch, listado, loading }) {
                         </form>
                     </header>
                     <ul className="ul-list-tipoenvio">
-                        {listado.map((el) => (
+                        {listado.map((el: usuarios_envio) => (
                             <li className='li-list-tipoenvio' key={el.id}>
-                                <div className="list-tipoenvio-item">{el.nombre}</div>
-                                <div className="list-tipoenvio-item">{el.formaEnvio}</div>
+                                <div className="list-tipoenvio-item"><a
+                                    href={el.enviowhatsapp ? "./recibos-telefono/" + el.telefono : "./recibos-correo/" + el.email}
+                                >{el.nombre}</a></div>
                             </li>
 
                         ))}

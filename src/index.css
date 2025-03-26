@@ -135,7 +135,8 @@ footer {
   font-size: 20px;
   border-bottom: 1px solid rgb(221, 218, 218);
   box-sizing: border-box;
-  padding: 5px;
+  padding: 15px;
+  padding-left: 10px;
 }
 
 .li-list-tipoenvio:last-child {
@@ -150,7 +151,12 @@ footer {
   box-sizing: border-box;
   padding-right: 50px;
   min-width: 350px;
+}
 
+.list-tipoenvio-item a:hover {
+  color: rgb(163, 163, 163);
+  transition-property: all;
+  transition-duration: 300ms;
 }
 
 #cmp_search {
@@ -176,4 +182,47 @@ footer {
   font-size: 16px;
   padding: 4px;
   border-radius: 10%;
+}
+
+.rec-main-cont {
+  border: 1px solid rgb(221, 218, 218);
+  max-width: 80vw;
+  min-width: 900px;
+  margin: 0 auto;
+}
+
+.rec-main-cont h1 {
+  text-align: center;
+}
+
+.rec-main-cont-grilla {
+  display: grid;
+  grid-template-columns: 1fr 2fr 4fr 4fr 2fr 2fr 4fr;
+}
+
+.titulos-grilla {
+  font-size: 80%;
+
+}
+
+.elementos-grilla-rc {
+  margin-top: 20px;
+  box-sizing: border-box;
+}
+
+.cnt-brdr {
+  border-bottom: 1px solid rgb(221, 218, 218);
+  font-weight: bold;
+  width: 90%;
+
+}
+
+.rc-inp-gr-cont {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+
+.rec-main-cont-grilla input {
+  box-sizing: border-box;
 }
