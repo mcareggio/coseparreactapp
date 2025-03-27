@@ -15,3 +15,15 @@ export type usuarios_envio = {
     enviowhatsapp: boolean,
     enviomail: boolean
 }
+export type recibo = {
+
+    ruta: number,
+    folio: number,
+    subfolio: number,
+    nombre: string,
+    direccion: string,
+    periodo: number,
+    total: number,
+    fecpago: string
+
+}
