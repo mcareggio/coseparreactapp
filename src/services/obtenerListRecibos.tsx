@@ -15,7 +15,8 @@ export function obtenerListRecibos({ tipo_envio = tipo_envio_str.whatsapp, telef
             direccion: obj.direccion,
             periodo: obj.periodo,
             total: obj.total,
-            fecpago: fecpagostr
+            fecpago: fecpagostr,
+            activo: true
 
         })
 

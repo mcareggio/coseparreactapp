@@ -239,3 +239,7 @@ footer {
 .rec-main-cont-grilla input {
   box-sizing: border-box;
 }
+
+.tachado {
+  opacity: 0.4;
+}

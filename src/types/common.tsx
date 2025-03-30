@@ -24,6 +24,6 @@ export type recibo = {
     direccion: string,
     periodo: number,
     total: number,
-    fecpago: string
-
+    fecpago: string,
+    activo: boolean
 }
