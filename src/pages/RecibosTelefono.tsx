@@ -8,6 +8,7 @@ import { useEffect, useId, useState } from "react";
 import { Checkbox } from "../components/checkbox";
 import { useSumaRecibos } from "../hoocks/useSumaRecibos";
 import { Selectinteres } from "../components/selectinteres";
+import { formatearModenedayRedondeo, periodoConBarra } from "../helpers/helpers";
 export function RecibosTelefono() {
 
     const { telefono, email } = useParams();
@@ -21,7 +22,7 @@ export function RecibosTelefono() {
     const [isChecked, setCheck] = useState(array_state_checkbox)
     const [interesarr, setInteresarr] = useState(array_state_select)
     const [total_parc_arr, setParcArr] = useState(array_state_parc)
-    const suma = useSumaRecibos({ total_rec, setTotalRec, listado_recibos, isChecked, interesarr })
+    const suma = useSumaRecibos({ total_rec, setTotalRec, listado_recibos, isChecked, total_parc_arr })
 
     useEffect(() => {
         let newarray_state_checkbox: boolean[] = []
@@ -51,14 +52,22 @@ export function RecibosTelefono() {
         setParcArr(newarray_state_parc)
     }, [interesarr])
     useEffect(() => {
-
+        let newarray_state_parc: number[] = []
+        listado_recibos.map((el, index) => {
+            let parcial = el.total + (el.total * (Number.parseInt(interesarr[index]) / 100))
+            newarray_state_parc.push(parcial)
+        })
         isChecked.map((el, index) => {
-            if (el)
+            if (el) {
                 document.getElementById("grilla-" + index)?.classList.add("tachado")
+                newarray_state_parc[index] = 0
+            }
             else
                 document.getElementById("grilla-" + index)?.classList.remove("tachado")
 
         })
+
+        setParcArr(newarray_state_parc)
     }, [isChecked])
 
     return (
@@ -68,11 +77,12 @@ export function RecibosTelefono() {
                 <div className="rec-main-cont">
                     <h1>Cooperativa de Agua Potable, Vivienda, Consumo, Servicios Asistenciales y Otros Servicios de Arata Limitada</h1>
                     <div className="rec-main-cont-grilla titulos-grilla">
-                        <div className=""></div>
+                        <div className="checkbox-gr-st"></div>
                         <div className="cnt-brdr">Ruta-Folio-Sub</div>
                         <div className="cnt-brdr">Nombre y Apellido</div>
                         <div className="cnt-brdr">Direccion</div>
-                        <div className="cnt-brdr">Interes</div>
+                        <div className="cnt-brdr">Periodo</div>
+                        <div className="cnt-brdr selectinteres">Interes</div>
                         <div className="cnt-brdr">Importe</div>
                         <div className="cnt-brdr">Bar Code Exampleeeeeee</div>
                     </div>
@@ -82,23 +92,24 @@ export function RecibosTelefono() {
 
                         listado_recibos.map((el, index) => (
                             <div className="rec-main-cont-grilla elementos-grilla-rc" id={"grilla-" + index} key={"k-" + index}>
-                                <div className="rc-inp-gr-cont">
+                                <div className="rc-inp-gr-cont checkbox-gr-st">
 
                                     <Checkbox id={index} isChecked={isChecked} setCheck={setCheck} />
 
                                 </div>
-                                <div>{el.ruta + "-" + el.folio}</div>
-                                <div>{el.nombre}</div>
+                                <div>{el.ruta + "-" + el.folio + "-" + el.subfolio}</div>
+                                <span>{el.nombre}</span>
                                 <div>{el.direccion}</div>
-                                <div><Selectinteres id={"select" + index} interesarr={interesarr} setInteresarr={setInteresarr} /></div>
-                                <div>${total_parc_arr[index]}</div>
+                                <div>{periodoConBarra(el.periodo)}</div>
+                                <div className="selectinteres"><Selectinteres id={"select" + index} interesarr={interesarr} setInteresarr={setInteresarr} /></div>
+                                <div className="importeparcial">{formatearModenedayRedondeo(total_parc_arr[index])}</div>
                                 <div>Bar Code Exampleeeeeee</div>
                             </div>
                         ))}
 
                     <div className="rec-main-cont-grilla-total">
                         <div></div>
-                        <div className="total-recibos">Total: ${total_rec}</div>
+                        <div className="total-recibos">Total: {formatearModenedayRedondeo(total_rec)}</div>
                     </div>
 
                 </div>

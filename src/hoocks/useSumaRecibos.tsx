@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react"
 
-export function useSumaRecibos({ total_rec, setTotalRec, listado_recibos, isChecked, interesarr }) {
+export function useSumaRecibos({ total_rec, setTotalRec, listado_recibos, isChecked, total_parc_arr }) {
     useEffect(() => {
         let newtotal = 0
 
         listado_recibos.map((recibo, index) => {
             if (!isChecked[index])
-                newtotal += recibo.total
+                newtotal += total_parc_arr[index]
         })
         setTotalRec(newtotal)
-    }, [isChecked, interesarr])
+    }, [total_parc_arr, isChecked])
     return total_rec;
 }
