@@ -9,7 +9,7 @@ import { RecibosTelefono } from './pages/RecibosTelefono.tsx';
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Index />} />
+      <Route index element={<Index />} />
       <Route path="/listado" element={<Listsusrenvpage />} />
       <Route path="/listado-facturas" element={<ListadoFacturas />} />
       <Route path="/recibos-telefono/:whatsapp" element={<RecibosTelefono />} />

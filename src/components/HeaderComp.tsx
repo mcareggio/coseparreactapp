@@ -8,9 +8,9 @@ export default function HeaderComp() {
             <div></div>
             <div className='hd-brand'>COSEPAR</div>
             <Menuprincipal>
-                <MenuprincipalItem link="./" nombre="Inicio" />
-                <MenuprincipalItem link="./listado" nombre="Listado Usuarios Envio Automatico" />
-                <MenuprincipalItem link="./listado-facturas" nombre="Listado Facturas Completo" />
+                <MenuprincipalItem link="/" nombre="Inicio" />
+                <MenuprincipalItem link="/listado" nombre="Listado Usuarios Envio Automatico" />
+                <MenuprincipalItem link="/listado-facturas" nombre="Listado Facturas Completo" />
             </Menuprincipal>
         </header >
 
