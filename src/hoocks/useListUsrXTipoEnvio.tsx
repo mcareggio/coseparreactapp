@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react";
-import { obtenerListDatos } from "../services/obtenerListDatos.tsx";
+import { obtenerListUsuariosXTipoEnvio } from "../services/obtenerListUsuariosXTipoEnvio.tsx";
 import { usuarios_envio } from '../types/common.tsx'
 
 
-export default function useListUsrEnvio(search: string) {
-    let url = import.meta.env.VITE_DEFAULT_PATH + "/" + import.meta.env.VITE_GET_USUARIOS_ENVIO
-    const defListado: usuarios_envio[] = []
-    const [listado, setListado] = useState(defListado)
-    const [loading, setLoading] = useState(false)
+export default function useListUsrEnvio({ search_to_fetch, listado, setListado, loading, setLoading }) {
+
+
 
     useEffect(() => {
         setLoading(true)
-        search != "" ? url = url + "/search/" + search : url
-        const newListado: usuarios_envio[] = obtenerListDatos(url);
-        console.log(url)
+        let newListado: usuarios_envio[] = obtenerListUsuariosXTipoEnvio(search_to_fetch);
+
+
         setListado(newListado)
+        /*setListado(newListado.filter((listado) =>
+            listado.nombre.toLowerCase().includes(search_to_fetch.toLowerCase())
+        )) para hacer el filtrado aca en el mismo front*/
+
         setLoading(false)
 
-    }, [search]);
+    }, [search_to_fetch]);
     return { listado, loading }
 }

@@ -4,9 +4,10 @@ import useListUsrXTipoEnvio from '../hoocks/useListUsrXTipoEnvio.tsx';
 import { BarraBusqueda } from './BarraBusqueda.tsx';
 import useDebounce from '../hoocks/useDebounce.tsx';
 import { usuarios_envio } from '../types/common.tsx';
-import { TablaTipoEnvio } from './TablaTipoEnvio.tsx';
+import useListTotalFacturas from '../hoocks/useListTotalFacturas.tsx';
+import { TablaFacturas } from './TablaFacturas.tsx';
 
-export function ListadoUsuariosEnvio() {
+export function ListadoTodasFacturas() {
 
     //    const defListado: datos_forma_envio[] = []
     const [search, setSearch] = useState("")
@@ -18,14 +19,14 @@ export function ListadoUsuariosEnvio() {
     useDebounce(() => {
         let newSearchtofetch = search
         set_search_to_fetch(newSearchtofetch)
-    }, [search], 800)
+    }, [search], 600)
 
-    useListUsrXTipoEnvio({ search_to_fetch, listado, setListado, loading, setLoading })//Cambiando este hook se cambia lo que renderiza en el listado
-
+    //useListUsrXTipoEnvio({ search_to_fetch, listado, setListado, loading, setLoading })//Cambiando este hook se cambia lo que renderiza en el listado
+    useListTotalFacturas({ search_to_fetch, listado, setListado, loading, setLoading })
     return (
         <article className="princ-artivle">
             <BarraBusqueda setSearch={setSearch} />
-            <TablaTipoEnvio listado={listado} loading={loading}></TablaTipoEnvio>
+            <TablaFacturas listado={listado} loading={loading}></TablaFacturas>
         </article>
     )
 }

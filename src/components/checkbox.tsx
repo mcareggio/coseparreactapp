@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
+import { recibo } from "../types/common";
 
-
-export function Checkbox({ id, isChecked, setCheck }) {
+export function Checkbox({ id = 0, isChecked, setCheck }) {
 
 
     function handleChange(e: Event) {
 
         let newChecksState = [];
-        isChecked.map(el => newChecksState.push(el))
+        isChecked.map((el: recibo) => newChecksState.push(el))
         newChecksState[id] = !isChecked[id]
         setCheck(newChecksState)
         console.log(id + "" + newChecksState)

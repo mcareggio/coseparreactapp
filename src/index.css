@@ -102,6 +102,14 @@ a {
 
 }
 
+.cnt-flex {
+  display: flex;
+}
+
+.flx-dir-rwrev {
+  flex-direction: row-reverse;
+}
+
 .main-footer {
   width: 100%;
   height: 6vh;
@@ -159,6 +167,10 @@ footer {
   transition-duration: 300ms;
 }
 
+.tipo-envio-lst {
+  font-size: 60%;
+}
+
 #cmp_search {
   font-size: 20px;
 }
@@ -198,17 +210,96 @@ footer {
 
 .rec-main-cont-grilla {
   display: grid;
-  grid-template-columns: 1fr 2fr 4fr 4fr 2fr 1fr 3fr 4fr;
+  grid-template-columns: 1fr 2fr 4fr 4fr 2fr 1fr 3fr 1fr;
   font-size: 15px;
 }
 
+.print-table {
+  display: none;
+  width: 100%;
+}
+
+.print-cont {
+  display: none;
+}
+
+.not-print {
+  display: block;
+}
+
+.barcode {
+  width: 200px;
+
+}
+
+.td-price {
+  text-align: right;
+}
+
+.td-barcode {
+  text-align: center;
+}
+
+.fecha-rec-pago {
+  margin-left: 20px;
+  background-color: grey;
+  background: rgb(221, 218, 218);
+  width: 110px;
+  border-radius: 10%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.table-list {
+
+  width: 100%;
+  border-spacing: 0;
+  box-sizing: border-box;
+  border: 1px solid rgb(221, 218, 218);
+}
+
+.table-list td {
+  padding: 10px;
+  border: 0;
+
+}
+
+.table-list tr {
+  border: 0;
+}
+
+.table-list tr:nth-child(even) {
+  background-color: rgb(221, 218, 218);
+}
+
 @media print {
+  .hd-principal {
+    display: none;
+  }
+
+  .not-print {
+    display: none;
+  }
+
+  .print-cont {
+    display: block;
+  }
+
+  .main-footer {
+    display: none;
+  }
+
   .tachado {
+    display: none !important;
+  }
+
+  .print-button {
     display: none;
   }
 
   .rec-main-cont-grilla {
     display: grid;
+    display: none;
     grid-template-columns: 2fr 4fr 4fr 2fr 2fr 4fr;
     font-size: 12px;
   }
@@ -220,7 +311,23 @@ footer {
   .checkbox-gr-st {
     display: none !important;
   }
+
+  .total-recibos {
+    display: none;
+  }
+
+  .print-table {
+    display: table;
+    width: 100%;
+
+  }
+
+  .print-table td {
+    padding: 2px;
+
+  }
 }
+
 
 .rec-main-cont-grilla-total {
   display: grid;

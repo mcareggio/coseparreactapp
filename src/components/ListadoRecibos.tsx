@@ -1,16 +1,16 @@
 import { useParams } from "react-router";
-import { formatearModenedayRedondeo, periodoConBarra } from "../helpers/helpers";
-import { Selectinteres } from "./selectinteres";
+import { Barcodeprint, formatearBarcode, formatearModenedayRedondeo, formatearNombreArchivo, periodoConBarra, recortar } from "../helpers/helpers";
+import { Selectinteres } from "./Selectinteres";
 import { useListReciboPago } from "../hoocks/useListReciboPago";
 import { useEffect, useState } from "react";
 import { useSumaRecibos } from "../hoocks/useSumaRecibos";
 import { tipo_envio_str } from "../types/common";
 import { Checkbox } from "./checkbox";
+import { PrintButton } from "./PrintButton";
+import { TablaReciboImpresion } from "./TablaRecibosImpresion";
+import { AiOutlineDownload } from "react-icons/ai";
+export function ListadoRecibos({ listado_recibos }) {
 
-export function ListadoRecibos() {
-    const { telefono, email } = useParams();
-    const tipo_envio = tipo_envio_str.whatsapp
-    const { loading, listado_recibos } = useListReciboPago({ tipo_envio, telefono, email })
     const [total_rec, setTotalRec] = useState(0)
 
     const array_state_checkbox: boolean[] = new Array(200).fill(false)
@@ -19,7 +19,7 @@ export function ListadoRecibos() {
     const [isChecked, setCheck] = useState(array_state_checkbox)
     const [interesarr, setInteresarr] = useState(array_state_select)
     const [total_parc_arr, setParcArr] = useState(array_state_parc)
-    const suma = useSumaRecibos({ total_rec, setTotalRec, listado_recibos, isChecked, total_parc_arr })
+    useSumaRecibos({ total_rec, setTotalRec, listado_recibos, isChecked, total_parc_arr })
 
     useEffect(() => {
         let newarray_state_checkbox: boolean[] = []
@@ -67,43 +67,48 @@ export function ListadoRecibos() {
         setParcArr(newarray_state_parc)
     }, [isChecked])
     return (
-        <div className="rec-main-cont">
-            <h1>Cooperativa de Agua Potable, Vivienda, Consumo, Servicios Asistenciales y Otros Servicios de Arata Limitada</h1>
-            <div className="rec-main-cont-grilla titulos-grilla">
-                <div className="checkbox-gr-st"></div>
-                <div className="cnt-brdr">Ruta-Folio-Sub</div>
-                <div className="cnt-brdr">Nombre y Apellido</div>
-                <div className="cnt-brdr">Direccion</div>
-                <div className="cnt-brdr">Periodo</div>
-                <div className="cnt-brdr selectinteres">Interes</div>
-                <div className="cnt-brdr">Importe</div>
-                <div className="cnt-brdr">Bar Code Exampleeeeeee</div>
-            </div>
+        <>
+            <div className="rec-main-cont not-print">
+                <h1>Cooperativa de Agua Potable, Vivienda, Consumo, Servicios Asistenciales y Otros Servicios Publicos de Arata Limitada</h1>
+                <div className="rec-main-cont-grilla titulos-grilla">
+                    <div className="checkbox-gr-st"></div>
+                    <div className="cnt-brdr">Ruta-Folio-Sub</div>
+                    <div className="cnt-brdr">Nombre y Apellido</div>
+                    <div className="cnt-brdr">Direccion</div>
+                    <div className="cnt-brdr">Periodo</div>
+                    <div className="cnt-brdr selectinteres">Interes</div>
+                    <div className="cnt-brdr" style={{ textAlign: "center" }}> Importe</div>
+                    <div className="cnt-brdr"></div>
+                </div>
 
 
-            {
+                {
 
-                listado_recibos.map((el, index) => (
-                    <div className="rec-main-cont-grilla elementos-grilla-rc" id={"grilla-" + index} key={"k-" + index}>
-                        <div className="rc-inp-gr-cont checkbox-gr-st">
+                    listado_recibos.map((el, index) => (
+                        <div className="rec-main-cont-grilla elementos-grilla-rc" id={"grilla-" + index} key={"k-" + index}>
+                            <div className="rc-inp-gr-cont checkbox-gr-st">
 
-                            <Checkbox id={index} isChecked={isChecked} setCheck={setCheck} />
+                                <Checkbox id={index} isChecked={isChecked} setCheck={setCheck} />
 
+                            </div>
+                            <div>{el.ruta + "-" + el.folio + "-" + el.subfolio}</div>
+                            <span>{recortar(el.nombre)}</span>
+                            <div>{el.direccion}</div>
+                            <div>{periodoConBarra(el.periodo)}</div>
+                            <div className="selectinteres"><Selectinteres id={"select" + index} interesarr={interesarr} setInteresarr={setInteresarr} /></div>
+                            <div className="importeparcial">{formatearModenedayRedondeo(total_parc_arr[index])}</div>
+                            <div className="importeparcial"><a href={formatearNombreArchivo(el.ruta, el.folio, el.subfolio, el.periodo)}><AiOutlineDownload /></a></div>
                         </div>
-                        <div>{el.ruta + "-" + el.folio + "-" + el.subfolio}</div>
-                        <span>{el.nombre}</span>
-                        <div>{el.direccion}</div>
-                        <div>{periodoConBarra(el.periodo)}</div>
-                        <div className="selectinteres"><Selectinteres id={"select" + index} interesarr={interesarr} setInteresarr={setInteresarr} /></div>
-                        <div className="importeparcial">{formatearModenedayRedondeo(total_parc_arr[index])}</div>
-                        <div>Bar Code Exampleeeeeee</div>
-                    </div>
-                ))}
+                    ))
+                }
 
-            <div className="rec-main-cont-grilla-total">
-                <div></div>
-                <div className="total-recibos">Total: {formatearModenedayRedondeo(total_rec)}</div>
-            </div>
+                <div className="rec-main-cont-grilla-total">
+                    <div className="cnt-flex flx-dir-rwrev"><PrintButton /></div>
+                    <div className="total-recibos">Total: {formatearModenedayRedondeo(total_rec)}</div>
+                </div>
 
-        </div>)
+            </div >
+            <TablaReciboImpresion {... { listado_recibos, isChecked, total_parc_arr, total_rec }} />
+            <TablaReciboImpresion {... { listado_recibos, isChecked, total_parc_arr, total_rec }} />
+        </>)
 }

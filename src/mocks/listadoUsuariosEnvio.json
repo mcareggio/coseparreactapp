@@ -4,8 +4,8 @@
         "nombre": "Marcos",
         "telefono": "5492302610828",
         "email": "test@",
-        "enviowhatsapp": false,
-        "enviomail": false
+        "enviowhatsapp": true,
+        "enviomail": true
     },
     {
         "id": 2,

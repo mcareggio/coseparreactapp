@@ -1,5 +1,6 @@
 import { FooterComp } from "../components/FooterComp";
 import HeaderComp from "../components/HeaderComp";
+import { ListadoTodasFacturas } from "../components/ListadoTodasFacturas";
 import { MainComp } from "../components/MainComp";
 
 export function ListadoFacturas() {
@@ -7,7 +8,7 @@ export function ListadoFacturas() {
         <>
             <HeaderComp></HeaderComp>
             <MainComp>
-                <h1></h1>
+                <ListadoTodasFacturas />
             </MainComp>
             <FooterComp />
         </>
