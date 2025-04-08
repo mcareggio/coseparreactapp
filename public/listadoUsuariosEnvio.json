@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "nombre": "Marcos",
+        "telefono": "5492302610828",
+        "email": "test@",
+        "enviowhatsapp": true,
+        "enviomail": true
+    },
+    {
+        "id": 2,
+        "nombre": "Juan Carlos Vanderhoeven",
+        "telefono": "5492302620828",
+        "email": "",
+        "enviowhatsapp": true,
+        "enviomail": false
+    },
+    {
+        "id": 3,
+        "nombre": "Pedro",
+        "telefono": "5492302630828",
+        "email": "",
+        "enviowhatsapp": true,
+        "enviomail": false
+    },
+    {
+        "id": 4,
+        "nombre": "Julian",
+        "telefono": "5492302640848",
+        "email": "",
+        "enviowhatsapp": true,
+        "enviomail": false
+    },
+    {
+        "id": 5,
+        "nombre": "Carlos",
+        "telefono": "5492302647828",
+        "email": "",
+        "enviowhatsapp": true,
+        "enviomail": false
+    },
+    {
+        "id": 6,
+        "nombre": "Victor",
+        "telefono": "5492302640829",
+        "email": "",
+        "enviowhatsapp": true,
+        "enviomail": false
+    }
+]

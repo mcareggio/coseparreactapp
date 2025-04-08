@@ -1,22 +1,42 @@
 import usuariosenvio from '../mocks/listadoUsuariosEnvio.json';
 import { usuarios_envio } from '../types/common.tsx'
-/*
-export function obtenerListDatos(url: string) {
+
+export function obtenerListUsuariosXTipoEnvio(search_to_fetch: string,setListado) {
 
     let url = import.meta.env.VITE_DEFAULT_PATH + "/" + import.meta.env.VITE_GET_USUARIOS_ENVIO
 
+    let newlistado: usuarios_envio[]= []
+    if (search_to_fetch == ""){
+        url += "/"+"marcos"
+        console.log("Hacer un fetch de todo")
+    }
+    else {
+        url += "/"+search_to_fetch
+        console.log("Hacer un fetch de " + url )
+    }
+    //cambiar el json a vawriable url
+    fetch('listadoUsuariosEnvio.json').then((response) => response.json()).then((array:usuarios_envio[]) => {
+        
 
-    let newresult = [{}]
-    fetch(url).then((response) => response.json()).then((telefonos) => newresult = telefonos)
-
-    return newresult;
+            array.map((el:usuarios_envio)=>
+            newlistado.push(
+                {   id: el.id,
+                     nombre: el.nombre,
+                      telefono: el.telefono,
+                       email: el.email,
+                        enviowhatsapp: el.enviowhatsapp,
+                         enviomail: el.enviomail })
+)}).then(setListado(newlistado)).catch((err)=>console.log(err))
+   
+    
+    return newlistado;
 
 }
-*/
+/*
 export function obtenerListUsuariosXTipoEnvio(search_to_fetch: string) {
 
     let url = import.meta.env.VITE_DEFAULT_PATH + "/" + import.meta.env.VITE_GET_USUARIOS_ENVIO
-    let search_path = "/search/"
+    let search_path = ""
     if (search_to_fetch == "")
         console.log("Hacer un fetch de todo")
     else {
@@ -29,3 +49,4 @@ export function obtenerListUsuariosXTipoEnvio(search_to_fetch: string) {
     return newlistado;
 
 }
+    */

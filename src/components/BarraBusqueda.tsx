@@ -2,7 +2,7 @@ import { Children, useId } from "react";
 import { TablaTipoEnvio } from "./TablaTipoEnvio";
 
 
-export function BarraBusqueda({ setSearch, children = new Element }) {
+export function BarraBusqueda({ setSearch, children }) {
     const inp_search_id = useId();
     const form_id = useId();
 

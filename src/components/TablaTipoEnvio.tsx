@@ -1,8 +1,11 @@
+import { useEffect } from "react"
 import { usuarios_envio } from "../types/common"
-export function TablaTipoEnvio({ listado, loading }) {
+import useListUsrEnvio from "../hoocks/useListUsrXTipoEnvio"
+export function TablaTipoEnvio({listado, loading}) {
+
     return (
         <ul className="ul-list-tipoenvio">
-            {listado.map((el: usuarios_envio) => (
+            {loading && listado.map((el: usuarios_envio) => (
                 <li className='li-list-tipoenvio' key={el.id}>
                     <div className="list-tipoenvio-item"><a
                         href={el.enviowhatsapp ? "./recibos-telefono/" + el.telefono : el.enviomail ? "./recibos-email/" + el.email : "./recibos/" + el.id}
