@@ -1,8 +1,8 @@
-import { useId } from "react";
+import { Children, useId } from "react";
 import { TablaTipoEnvio } from "./TablaTipoEnvio";
 
 
-export function BarraBusqueda({ setSearch }) {
+export function BarraBusqueda({ setSearch, children = new Element }) {
     const inp_search_id = useId();
     const form_id = useId();
 
@@ -21,6 +21,8 @@ export function BarraBusqueda({ setSearch }) {
                 <input type='search' id={inp_search_id} name='cmp_search' onChange={handleSearch}></input>
                 <button type='submit' name='Buscar' className='btn-buscar' onClick={handleClick}>Buscar</button>
             </form>
+            {Children.map(children, child => child
+            )}
         </header>
     );
 
