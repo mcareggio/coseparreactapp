@@ -14,25 +14,24 @@ export function ListadoUsuariosEnvio() {
     //    const defListado: datos_forma_envio[] = []
     const [search, setSearch] = useState("")
     const [search_to_fetch, set_search_to_fetch] = useState("")
-    const defListado: usuarios_envio[] = []
-    const [listado, setListado] = useState()
-    const [loading, setLoading] = useState(false)
+    const { listado, loading, getListado } = useListUsrEnvio({ search_to_fetch })//Cambiando este hook se cambia lo que renderiza en el listado
     const [isModalOpen, setModalOpen] = useState(false)
 
     useDebounce(() => {
         let newSearchtofetch = search
         set_search_to_fetch(newSearchtofetch)
+        getListado({ search_to_fetch })
     }, [search], 800)
 
     useEffect(() => {
 
     }, [isModalOpen])
-    useEffect(()=>{
-        obtenerListUsuariosXTipoEnvio(search_to_fetch,setListado)
-        console.log(listado)
-    },[search_to_fetch])
-    //useListUsrEnvio( {search_to_fetch, listado, setListado, loading, setLoading })//Cambiando este hook se cambia lo que renderiza en el listado
-    
+    useEffect(() => {
+        // obtenerListUsuariosXTipoEnvio(search_to_fetch, setListado)
+        //console.log(listado)
+    }, [search_to_fetch])
+    //
+
     return (
         <article className="princ-artivle">
             <BarraBusqueda setSearch={setSearch}><ModalAgregarUsuariosEnvio></ModalAgregarUsuariosEnvio></BarraBusqueda>
