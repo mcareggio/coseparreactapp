@@ -17,7 +17,7 @@ export function obtenerListRecibos({ tipo_envio = tipo_envio_str.none, telefono 
 
 
     }
-    listadorecibo.map((obj) => {
+    fetch('../listadorecibo.json').then(response => response.json()).then((listadorecibo) => listadorecibo.map((obj) => {
         let fecpagostr = ""
         obj.fecpago == null ? fecpagostr = "" : fecpagostr = obj.fecpago
         newListRecibos.push({
@@ -27,12 +27,12 @@ export function obtenerListRecibos({ tipo_envio = tipo_envio_str.none, telefono 
             nombre: obj.nombre,
             direccion: obj.direccion,
             periodo: obj.periodo,
-            total: obj.total,
+            total: Number.parseFloat(obj.total),
             fecpago: fecpagostr,
             activo: true
 
         })
 
-    })
+    }))
     return newListRecibos;
 }

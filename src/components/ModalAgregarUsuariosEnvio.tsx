@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react"
 
-export function ModalAgregarUsuariosEnvio({ isModalOpen=false, setModalOpen=(x:boolean)=>{} }) {
+export function ModalAgregarUsuariosEnvio({ isModalOpen, setModalOpen }) {
 
     const handleClick = () => {
         console.log("Abrir modal")

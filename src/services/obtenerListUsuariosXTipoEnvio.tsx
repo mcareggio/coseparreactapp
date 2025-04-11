@@ -1,17 +1,17 @@
 import usuariosenvio from '../mocks/listadoUsuariosEnvio.json';
 import { usuarios_envio } from '../types/common.tsx'
 
-export const obtenerListUsuariosXTipoEnvio = async ({ search_to_fetch }) => {
+export const obtenerListUsuariosXTipoEnvio = (search) => {
 
     let url = import.meta.env.VITE_DEFAULT_PATH + "/" + import.meta.env.VITE_GET_USUARIOS_ENVIO
 
     let newlistado: usuarios_envio[] = []
-    if (search_to_fetch == "") {
+    if (search == "") {
         url += "/" + "marcos"
         console.log("Hacer un fetch de todo")
     }
     else {
-        url += "/" + search_to_fetch
+        url += "/" + search
         console.log("Hacer un fetch de " + url)
     }
     //cambiar el json a vawriable url

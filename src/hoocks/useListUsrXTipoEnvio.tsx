@@ -3,15 +3,16 @@ import { obtenerListUsuariosXTipoEnvio } from "../services/obtenerListUsuariosXT
 import { usuarios_envio } from '../types/common.tsx'
 
 
-export default function useListUsrEnvio({ search_to_fetch }) {
+export default function useListUsrEnvio({ search }) {
     const defListado: usuarios_envio[] = []
     const [listado, setListado] = useState(defListado)
     const [loading, setLoading] = useState(false)
 
 
-    const getListado = useCallback(async ({ search_to_fetch }) => {
+    const getListado = useCallback(async ({ search }) => {
+
         setLoading(true)
-        setListado(await obtenerListUsuariosXTipoEnvio(search_to_fetch));
+        setListado(await obtenerListUsuariosXTipoEnvio(search));
 
 
         /*setListado(newListado.filter((listado) =>
@@ -20,6 +21,6 @@ export default function useListUsrEnvio({ search_to_fetch }) {
 
         setLoading(false)
 
-    }, [search_to_fetch]);
+    }, [search]);
     return { listado, loading, getListado }
 }
