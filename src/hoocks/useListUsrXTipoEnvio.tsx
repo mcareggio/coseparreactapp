@@ -3,24 +3,21 @@ import { obtenerListUsuariosXTipoEnvio } from "../services/obtenerListUsuariosXT
 import { usuarios_envio } from '../types/common.tsx'
 
 
-export default function useListUsrEnvio({ search }) {
+export default function useListUsrEnvio() {
     const defListado: usuarios_envio[] = []
     const [listado, setListado] = useState(defListado)
     const [loading, setLoading] = useState(false)
+    const [search, setSearch] = useState("")
 
 
     const getListado = useCallback(async ({ search }) => {
 
         setLoading(true)
-        setListado(await obtenerListUsuariosXTipoEnvio(search));
-
-
-        /*setListado(newListado.filter((listado) =>
-            listado.nombre.toLowerCase().includes(search_to_fetch.toLowerCase())
-        )) para hacer el filtrado aca en el mismo front*/
-
+        let newlistado: usuarios_envio[] = obtenerListUsuariosXTipoEnvio(search)
+        console.log(listado)
+        setListado(newlistado);
         setLoading(false)
 
     }, [search]);
-    return { listado, loading, getListado }
+    return { listado, loading, setListado, setSearch, search }
 }

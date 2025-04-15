@@ -8,15 +8,12 @@ import { TablaTipoEnvio } from './TablaTipoEnvio.tsx';
 import { ModalAgregarUsuariosEnvio } from './ModalAgregarUsuariosEnvio.tsx';
 import useListUsrEnvio from '../hoocks/useListUsrXTipoEnvio.tsx';
 import { obtenerListUsuariosXTipoEnvio } from '../services/obtenerListUsuariosXTipoEnvio.tsx';
+import React from 'react';
 
 export function ListadoUsuariosEnvio() {
 
-    //    const defListado: datos_forma_envio[] = []
-    const [search, setSearch] = useState("")
-    //const [search_to_fetch, set_search_to_fetch] = useState("")
-    const [listado, setListado] = useState([{ id: 1, nombre: "marcos" }])
-    const loading = false
-    // const { loading, getListado } = useListUsrEnvio({ search })//Cambiando este hook se cambia lo que renderiza en el listado
+
+    const { loading, listado, setListado, search, setSearch } = useListUsrEnvio()//Cambiando este hook se cambia lo que renderiza en el listado
     //const [isModalOpen, setModalOpen] = useState(false)
     /*
         useDebounce(() => {
@@ -25,16 +22,16 @@ export function ListadoUsuariosEnvio() {
             set_search_to_fetch(newSearchtofetch)
             getListado({ search })
         }, [getListado], 800)
-    */
+   */
     useEffect(() => {
-        let newlistado = obtenerListUsuariosXTipoEnvio({ search })
-        //getListado({ search })
+        let newlistado = obtenerListUsuariosXTipoEnvio(search)
         setListado(newlistado)
     }, [search])
+
+
     return (
 
         <article className="princ-artivle">
-            {listado.map((el) => (<p key={el.id}>aaaa{el.id}</p>))}
             <BarraBusqueda setSearch={setSearch} search={search}></BarraBusqueda>
             <TablaTipoEnvio listado={listado} loading={loading}></TablaTipoEnvio>
         </article >

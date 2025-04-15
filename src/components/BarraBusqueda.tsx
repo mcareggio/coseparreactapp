@@ -1,5 +1,6 @@
 import { Children, useId } from "react";
 import { TablaTipoEnvio } from "./TablaTipoEnvio";
+import React from "react";
 
 
 export function BarraBusqueda({ setSearch, search }) {

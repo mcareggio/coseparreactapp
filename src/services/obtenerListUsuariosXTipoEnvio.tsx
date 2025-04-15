@@ -1,11 +1,11 @@
 import usuariosenvio from '../mocks/listadoUsuariosEnvio.json';
 import { usuarios_envio } from '../types/common.tsx'
 
-export const obtenerListUsuariosXTipoEnvio = (search) => {
+export function obtenerListUsuariosXTipoEnvio(search: string) {
 
-    let url = import.meta.env.VITE_DEFAULT_PATH + "/" + import.meta.env.VITE_GET_USUARIOS_ENVIO
-
-    let newlistado: usuarios_envio[] = []
+    //let url = import.meta.env.VITE_DEFAULT_PATH + "/" + import.meta.env.VITE_GET_USUARIOS_ENVIO
+    let url = "arreglar_la_url"
+    // let newlistado: usuarios_envio[] = []
     if (search == "") {
         url += "/" + "marcos"
         console.log("Hacer un fetch de todo")
@@ -15,9 +15,9 @@ export const obtenerListUsuariosXTipoEnvio = (search) => {
         console.log("Hacer un fetch de " + url)
     }
     //cambiar el json a vawriable url
-    fetch('listadoUsuariosEnvio.json').then((response) => response.json()).then((array: usuarios_envio[]) => {
+    let newlistado = fetch('listadoUsuariosEnvio.json').then((response) => response.json()).then((array: usuarios_envio[]) => {
 
-
+        let newlistado: usuarios_envio[] = []
         array.map((el: usuarios_envio) =>
             newlistado.push(
                 {
@@ -29,7 +29,10 @@ export const obtenerListUsuariosXTipoEnvio = (search) => {
                     enviomail: el.enviomail
                 })
         )
-    }).catch((err) => console.log(err))
+
+
+    }
+    ).then((newlistado) => { return newlistado })
 
 
     return newlistado;
