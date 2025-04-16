@@ -1,23 +1,28 @@
-import usuariosenvio from '../mocks/listadoUsuariosEnvio.json';
+import { Dispatch, SetStateAction } from 'react'
 import { usuarios_envio } from '../types/common.tsx'
+type props={
+    search_to_fetch:string,
+    setListado:Dispatch<SetStateAction<usuarios_envio[]>>,
+    setLoading:Dispatch<SetStateAction<boolean>>
+}
+export function obtenerListUsuariosXTipoEnvio({search_to_fetch,setListado,setLoading}:props) {
 
-export function obtenerListUsuariosXTipoEnvio(search: string) {
-
-    //let url = import.meta.env.VITE_DEFAULT_PATH + "/" + import.meta.env.VITE_GET_USUARIOS_ENVIO
-    let url = "arreglar_la_url"
+    let url = import.meta.env.VITE_DEFAULT_PATH + "/" + import.meta.env.VITE_GET_USUARIOS_ENVIO
+    let newlistado: usuarios_envio[] = []
     // let newlistado: usuarios_envio[] = []
-    if (search == "") {
-        url += "/" + "marcos"
+    if (search_to_fetch == "") {
+        url += "/"
         console.log("Hacer un fetch de todo")
     }
     else {
-        url += "/" + search
+        url += "/" + search_to_fetch
         console.log("Hacer un fetch de " + url)
     }
     //cambiar el json a vawriable url
-    let newlistado = fetch('listadoUsuariosEnvio.json').then((response) => response.json()).then((array: usuarios_envio[]) => {
+    setLoading(true)
+    fetch(url).then((response) => response.json()).then((array: usuarios_envio[]) => {
 
-        let newlistado: usuarios_envio[] = []
+        
         array.map((el: usuarios_envio) =>
             newlistado.push(
                 {
@@ -29,13 +34,13 @@ export function obtenerListUsuariosXTipoEnvio(search: string) {
                     enviomail: el.enviomail
                 })
         )
-
-
+    
+     return newlistado
     }
-    ).then((newlistado) => { return newlistado })
+    ).then((newlistado) => { console.log(newlistado); return newlistado }).then((newlistado) => { setListado(newlistado) }).then(()=>setLoading(false))
 
 
-    return newlistado;
+    
 
 }
 /*

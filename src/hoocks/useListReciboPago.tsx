@@ -8,9 +8,9 @@ export function useListReciboPago({ tipo_envio = tipo_envio_str.none, id = "", t
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        setLoading(true);
-        setListado_recibos(obtenerListRecibos({ tipo_envio, telefono, email, id }))
-        setLoading(false);
+       
+        obtenerListRecibos({ tipo_envio, telefono, email, id, setListado_recibos,setLoading})
+        
 
     }, [])
     return { loading, listado_recibos }

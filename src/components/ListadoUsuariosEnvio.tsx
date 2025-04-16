@@ -8,27 +8,18 @@ import { TablaTipoEnvio } from './TablaTipoEnvio.tsx';
 import { ModalAgregarUsuariosEnvio } from './ModalAgregarUsuariosEnvio.tsx';
 import useListUsrEnvio from '../hoocks/useListUsrXTipoEnvio.tsx';
 import { obtenerListUsuariosXTipoEnvio } from '../services/obtenerListUsuariosXTipoEnvio.tsx';
-import React from 'react';
 
 export function ListadoUsuariosEnvio() {
 
-
-    const { loading, listado, setListado, search, setSearch } = useListUsrEnvio()//Cambiando este hook se cambia lo que renderiza en el listado
+    
+    const { loading, listado, search, setSearch,search_to_fetch,set_search_to_fetch } = useListUsrEnvio()//Cambiando este hook se cambia lo que renderiza en el listado
     //const [isModalOpen, setModalOpen] = useState(false)
-    /*
+    
         useDebounce(() => {
-            console.log(search)
             let newSearchtofetch = search
             set_search_to_fetch(newSearchtofetch)
-            getListado({ search })
-        }, [getListado], 800)
-   */
-    useEffect(() => {
-        let newlistado = obtenerListUsuariosXTipoEnvio(search)
-        setListado(newlistado)
-    }, [search])
-
-
+        }, [search], 800)
+   
     return (
 
         <article className="princ-artivle">

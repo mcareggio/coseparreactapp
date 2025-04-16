@@ -1,7 +1,15 @@
-import listadorecibo from "../mocks/listadorecibo.json"
-import { recibo, tipo_envio_str } from "../types/common"
+import  { Dispatch, SetStateAction } from "react"
 
-export function obtenerListRecibos({ tipo_envio = tipo_envio_str.none, telefono = "", email = "", id = "" }) {
+import { recibo, tipo_envio_str } from "../types/common"
+type props={
+    tipo_envio:tipo_envio_str,
+    telefono:string,
+    email:string,
+    id:string
+    setListado_recibos:Dispatch<SetStateAction<recibo[]>>,
+    setLoading:Dispatch<SetStateAction<boolean>>
+}
+export function obtenerListRecibos({ tipo_envio = tipo_envio_str.none, telefono = "", email = "", id = "",setListado_recibos,setLoading }:props) {
     let newListRecibos: recibo[] = [];
 
     switch (tipo_envio) {
@@ -17,7 +25,8 @@ export function obtenerListRecibos({ tipo_envio = tipo_envio_str.none, telefono 
 
 
     }
-    fetch('../listadorecibo.json').then(response => response.json()).then((listadorecibo) => listadorecibo.map((obj) => {
+    setLoading(true)
+    fetch('../listadorecibo.json').then(response => response.json()).then((listadorecibo) => listadorecibo.map((obj:recibo) => {
         let fecpagostr = ""
         obj.fecpago == null ? fecpagostr = "" : fecpagostr = obj.fecpago
         newListRecibos.push({
@@ -27,11 +36,13 @@ export function obtenerListRecibos({ tipo_envio = tipo_envio_str.none, telefono 
             nombre: obj.nombre,
             direccion: obj.direccion,
             periodo: obj.periodo,
-            total: Number.parseFloat(obj.total),
+            total: obj.total,
             fecpago: fecpagostr,
             activo: true
 
         })
+       setListado_recibos(newListRecibos)
+       setLoading(false) 
 
     }))
     return newListRecibos;
