@@ -5,10 +5,16 @@ export function TablaFacturas({ listado, loading }) {
     const link = useRef("")
     return (
 
-        <table className="table-list">
+        <table className="tbl-list-tipoenvio">
             <tbody>
-                {loading ? <p>Loading...</p> : listado.map((el: list_usuarios_facturas, index: number) => (
-
+                    <tr>
+                        <th>#</th>
+                        <th>Ruta-Folio-Subfolio</th>
+                        <th>Nombre</th>
+                        <th>Direccion</th>
+                    </tr>
+                {loading ? <tr><td>Loading...</td></tr> : listado.map((el: list_usuarios_facturas, index: number) => (
+                    
                     <tr key={"table-fac-" + index}>
 
                         <td><a href={link.current = "recibos/" + el.id}>{el.id}</a></td>

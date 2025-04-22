@@ -1,7 +1,13 @@
 import { fechaCompleta, formatearBarcode, formatearModenedayRedondeo, periodoConBarra, recortar } from "../helpers/helpers";
 import { recibo } from "../types/common";
 import { Barcode } from "./BarCode";
-export function TablaReciboImpresion({ listado_recibos, isChecked, total_parc_arr, total_rec }) {
+type props={
+    listado_recibos:recibo[],
+    isChecked:boolean[],
+    total_parc_arr:number[],
+    total_rec:number
+}
+export function TablaReciboImpresion({ listado_recibos, isChecked, total_parc_arr, total_rec }:props) {
 
     return (
         <div className="rec-main-cont print-cont">
@@ -31,7 +37,7 @@ export function TablaReciboImpresion({ listado_recibos, isChecked, total_parc_ar
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td className="td-price">Total: {formatearModenedayRedondeo(total_rec)}</td>
+                        <td className="td-price tx-bold">Total: {formatearModenedayRedondeo(total_rec)}</td>
                         <td></td>
                     </tr>
 
