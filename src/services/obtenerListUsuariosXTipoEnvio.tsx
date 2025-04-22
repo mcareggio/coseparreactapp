@@ -1,11 +1,11 @@
 import { Dispatch, SetStateAction } from 'react'
 import { usuarios_envio } from '../types/common.tsx'
-type props={
-    search_to_fetch:string,
-    setListado:Dispatch<SetStateAction<usuarios_envio[]>>,
-    setLoading:Dispatch<SetStateAction<boolean>>
+type props = {
+    search_to_fetch: string,
+    setListado: Dispatch<SetStateAction<usuarios_envio[]>>,
+    setLoading: Dispatch<SetStateAction<boolean>>
 }
-export function obtenerListUsuariosXTipoEnvio({search_to_fetch,setListado,setLoading}:props) {
+export function obtenerListUsuariosXTipoEnvio({ search_to_fetch, setListado, setLoading }: props) {
 
     let url = import.meta.env.VITE_DEFAULT_PATH + "/" + import.meta.env.VITE_GET_USUARIOS_ENVIO
     let newlistado: usuarios_envio[] = []
@@ -20,9 +20,9 @@ export function obtenerListUsuariosXTipoEnvio({search_to_fetch,setListado,setLoa
     }
     //cambiar el json a vawriable url
     setLoading(true)
-    fetch(url).then((response) => response.json()).then((array: usuarios_envio[]) => {
+    fetch("listadoUsuariosEnvio.json").then((response) => response.json()).then((array: usuarios_envio[]) => {
 
-        
+
         array.map((el: usuarios_envio) =>
             newlistado.push(
                 {
@@ -34,13 +34,13 @@ export function obtenerListUsuariosXTipoEnvio({search_to_fetch,setListado,setLoa
                     enviomail: el.enviomail
                 })
         )
-    
-     return newlistado
+
+        return newlistado
     }
-    ).then((newlistado) => { console.log(newlistado); return newlistado }).then((newlistado) => { setListado(newlistado) }).then(()=>setLoading(false))
+    ).then((newlistado) => { console.log(newlistado); return newlistado }).then((newlistado) => { setListado(newlistado) }).then(() => setLoading(false))
 
 
-    
+
 
 }
 /*

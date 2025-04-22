@@ -1,9 +1,13 @@
-import { Children, useId } from "react";
+import { Children, Dispatch, SetStateAction, useId } from "react";
 import { TablaTipoEnvio } from "./TablaTipoEnvio";
 import React from "react";
+type props = {
+    search: string,
+    setSearch: Dispatch<SetStateAction<string>>
 
+}
 
-export function BarraBusqueda({ setSearch, search }) {
+export function BarraBusqueda({ setSearch, search }: props) {
     const inp_search_id = useId();
     const form_id = useId();
 

@@ -25,7 +25,7 @@ export function ListadoTodasFacturas() {
     useListTotalFacturas({ search_to_fetch, listado, setListado, loading, setLoading })
     return (
         <article className="princ-artivle">
-            <BarraBusqueda setSearch={setSearch}></BarraBusqueda>
+            <BarraBusqueda setSearch={setSearch} search={search}></BarraBusqueda>
             <TablaFacturas listado={listado} loading={loading}></TablaFacturas>
         </article>
     )

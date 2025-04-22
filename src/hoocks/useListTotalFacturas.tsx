@@ -7,16 +7,7 @@ export default function useListTotalFacturas({ search_to_fetch, listado, setList
 
 
     useEffect(() => {
-        setLoading(true)
-        let newListado: list_usuarios_facturas[] = obtenerListFacturas(search_to_fetch);//hacer un service nuvo
-
-        setListado(newListado)
-        /*setListado(newListado.filter((listado) =>
-            listado.nombre.toLowerCase().includes(search_to_fetch.toLowerCase())
-        )) para hacer el filtrado aca en el mismo front*/
-
-        setLoading(false)
-
+        obtenerListFacturas({ search_to_fetch, setListado, setLoading });//hacer un service nuvo
     }, [search_to_fetch]);
     return { listado, loading }
 }

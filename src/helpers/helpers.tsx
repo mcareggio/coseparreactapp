@@ -35,7 +35,7 @@ export function formatearNombreArchivo(ruta: number, folio: number, subfolio: nu
         if (folio_str.length == 1)
             stringVariable = "0000"
 
-    var strdev = "/facturas/" + periodo + "010" + ruta + stringVariable + folio_str + subfolio + "-" + convertirPeriodoSinBarra(periodo) + ".pdf"
+    var strdev = "/facturas/" + periodo + "/" + "010" + ruta + stringVariable + folio_str + subfolio + "-" + convertirPeriodoSinBarra(periodo) + ".pdf"
 
     return strdev
 }

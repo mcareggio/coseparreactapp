@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import {  formatearBarcode, formatearModenedayRedondeo, formatearNombreArchivo, periodoConBarra, recortar } from "../helpers/helpers";
+import { formatearBarcode, formatearModenedayRedondeo, formatearNombreArchivo, periodoConBarra, recortar } from "../helpers/helpers";
 import { Selectinteres } from "./Selectinteres";
 import { useListReciboPago } from "../hoocks/useListReciboPago";
 import { useEffect, useState } from "react";
@@ -9,8 +9,10 @@ import { Checkbox } from "./checkbox";
 import { PrintButton } from "./PrintButton";
 import { TablaReciboImpresion } from "./TablaRecibosImpresion";
 import { AiOutlineDownload } from "react-icons/ai";
-
-export function ListadoRecibos({ listado_recibos }) {
+type props = {
+    listado_recibos: recibo[]
+}
+export function ListadoRecibos({ listado_recibos }: props) {
 
     const [total_rec, setTotalRec] = useState(0)
 
@@ -27,7 +29,7 @@ export function ListadoRecibos({ listado_recibos }) {
         let newarray_state_interes: string[] = []
         let newarray_state_parc: number[] = []
         console.log(isChecked)
-        listado_recibos.map((el:recibo) => {
+        listado_recibos.map((el: recibo) => {
             newarray_state_checkbox.push(false);
             newarray_state_interes.push("0")
             newarray_state_parc.push(el.total)
@@ -43,7 +45,7 @@ export function ListadoRecibos({ listado_recibos }) {
     }, [])
     useEffect(() => {
         let newarray_state_parc: number[] = []
-        listado_recibos.map((el:recibo, index:number) => {
+        listado_recibos.map((el: recibo, index: number) => {
             let parcial = el.total + (el.total * (Number.parseInt(interesarr[index]) / 100))
             newarray_state_parc.push(parcial)
         })
@@ -51,7 +53,7 @@ export function ListadoRecibos({ listado_recibos }) {
     }, [interesarr])
     useEffect(() => {
         let newarray_state_parc: number[] = []
-        listado_recibos.map((el:recibo, index:number) => {
+        listado_recibos.map((el: recibo, index: number) => {
             let parcial = el.total + (el.total * (Number.parseInt(interesarr[index]) / 100))
             newarray_state_parc.push(parcial)
         })
@@ -85,7 +87,7 @@ export function ListadoRecibos({ listado_recibos }) {
 
                 {
 
-                    listado_recibos.map((el:recibo, index:number) => (
+                    listado_recibos.map((el: recibo, index: number) => (
                         <div className="rec-main-cont-grilla elementos-grilla-rc" id={"grilla-" + index} key={"k-" + index}>
                             <div className="rc-inp-gr-cont checkbox-gr-st">
 
