@@ -8,22 +8,23 @@ import { TablaTipoEnvio } from './TablaTipoEnvio.tsx';
 import { ModalAgregarUsuariosEnvio } from './ModalAgregarUsuariosEnvio.tsx';
 import useListUsrEnvio from '../hoocks/useListUsrXTipoEnvio.tsx';
 import { obtenerListUsuariosXTipoEnvio } from '../services/obtenerListUsuariosXTipoEnvio.tsx';
+import { ModalUsrEnvio } from './ModalUsrEnvio.tsx';
 
 export function ListadoUsuariosEnvio() {
 
-    
-    const { loading, listado, search, setSearch,search_to_fetch,set_search_to_fetch } = useListUsrEnvio()//Cambiando este hook se cambia lo que renderiza en el listado
+
+    const { loading, listado, search, setSearch, search_to_fetch, set_search_to_fetch } = useListUsrEnvio()//Cambiando este hook se cambia lo que renderiza en el listado
     //const [isModalOpen, setModalOpen] = useState(false)
-    
-        useDebounce(() => {
-            let newSearchtofetch = search
-            set_search_to_fetch(newSearchtofetch)
-        }, [search], 800)
-   
+
+    useDebounce(() => {
+        let newSearchtofetch = search
+        set_search_to_fetch(newSearchtofetch)
+    }, [search], 800)
+
     return (
 
         <article className="princ-artivle">
-            <BarraBusqueda setSearch={setSearch} search={search}></BarraBusqueda>
+            <BarraBusqueda setSearch={setSearch} search={search}><ModalUsrEnvio></ModalUsrEnvio></BarraBusqueda>
             <TablaTipoEnvio listado={listado} loading={loading}></TablaTipoEnvio>
         </article >
     )

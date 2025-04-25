@@ -4,10 +4,10 @@ import React from "react";
 type props = {
     search: string,
     setSearch: Dispatch<SetStateAction<string>>
-
+    children: React.ReactElement
 }
 
-export function BarraBusqueda({ setSearch, search }: props) {
+export function BarraBusqueda({ setSearch, search, children }: props) {
     const inp_search_id = useId();
     const form_id = useId();
 
@@ -25,8 +25,10 @@ export function BarraBusqueda({ setSearch, search }: props) {
                 <label htmlFor={inp_search_id}>Buscar:</label>
                 <input type='search' id={inp_search_id} name='cmp_search' value={search} onChange={handleSearch}></input>
                 <button type='submit' name='Buscar' className='btn-buscar' onClick={handleClick}>Buscar</button>
-            </form>
 
+            </form>
+            {Children.map(children, child => child
+            )}
         </header>
     );
 

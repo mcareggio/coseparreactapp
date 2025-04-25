@@ -7,7 +7,7 @@ export default function useListTotalFacturas({ search_to_fetch, listado, setList
 
 
     useEffect(() => {
-        obtenerListFacturas({ search_to_fetch, setListado, setLoading });//hacer un service nuvo
+        obtenerListFacturas({ search_to_fetch, setListado, setLoading });
     }, [search_to_fetch]);
     return { listado, loading }
 }

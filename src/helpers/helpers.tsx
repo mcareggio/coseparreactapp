@@ -55,3 +55,9 @@ export function fechaCompleta() {
 export function recortar(str: string) {
     return str.slice(0, 20)
 }
+export function addClassToElId(element: string, className: string) {
+    document.getElementById(element)?.classList.add(className)
+}
+export function remClassToElId(element: string, className: string) {
+    document.getElementById(element)?.classList.remove(className)
+}
